@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Simple modal</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formDetails" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="storageId" class="form-label">Id Number</label>
+            <input type="number" class="form-control" id="storageId" formControlName="storageId">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="storageDate" class="form-label">Date</label>
+            <input type="date" class="form-control" id="storageDate" formControlName="storageDate">
+        </div>
+        <div class="mb-3">
+            <label for="storageStatus" class="form-label">Status</label>
+            <select class="form-control" name="storageStatus" id="storageStatus" formControlName="storageAmount" (change)="changeStatus($event)">
+                <option value="">Choose Status</option>
+                <option *ngFor="let status of statuses" [value]="status.key">
+                    {{ status.value }}
+                  </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="storageAmount" class="form-label">Amount</label>
+            <input type="number" class="form-control" id="storageAmount" formControlName="storageAmount">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>

@@ -1,0 +1,41 @@
+
+<div class="container">
+    
+    <button type="button" class="btn btn-primary" (click)="openModal(null)">Add</button>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id Number</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Amount</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody *ngIf="storages?.length != 0">
+            <tr *ngFor="let storage of storages; let i=index"> 
+                <td>{{storage.storageId}}</td>
+                <td>{{storage.storageDate | date: 'dd/MM/yyyy'}}</td>
+                <td>{{Statuses[storage.storageStatus-1].value}}</td>
+                <td>{{storage.storageAmount}}</td>
+                <td>
+                    <button type="button" class="btn btn-success" (click)="openModal(storage)">Edit</button>
+                </td>
+                <td><button type="button" class="btn btn-danger" (click)="openConfirmationDialog(i)">Delete</button>
+                </td> 
+            </tr>
+        </tbody>
+        <tbody *ngIf="storages?.length == 0">
+            <tr>
+                <td colspan="6" class="no-data-available">No data!</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">Instructions: Click on edit to make update this row. Click on delete to remove from list this row. Cleck on add to insert new row.</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
